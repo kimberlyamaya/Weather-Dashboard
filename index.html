@@ -17,7 +17,7 @@
 
         <div id="side-bar" class="side-bar col-3 d-flex flex-column">
             <h2 class="p-2">Search for City:</h2>
-            <input type="text" placeholder="City" id="city-input">
+            <input type="text" placeholder="City" id="city-input">  
             <input type="text" placeholder="State" id="state-input">
             <button id="search-btn" class="btn-primary p-2">Search</button>
             <button id="clear-hisotry-btn" class="btn-secondary p-2">Clear History</button>
@@ -32,7 +32,9 @@
             <div id="todayWeather" class="todayWeather">
                 <!-- this div has a border around it -->
                 <h2 id="city-plus-date" class="city-plus-date"></h2>
-                <!-- dynamically appended p containing temp, wind, humidity, and uv index -->
+                <div class="weather-details-container" id="weather-details-container">
+                    <!-- dynamically appended p containing temp, wind, humidity, and uv index -->
+                </div>
             </div>
 
             <div id="5dayWeather" class="5dayWeather">
