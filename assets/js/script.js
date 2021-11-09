@@ -24,14 +24,14 @@ var inputHandler = function() {
     } else if (stateValue === "") {
         alert("Please enter a state.");
     } else {
-        getAPI(cityValue, stateValue, limit);
+        getCoordinates(cityValue, stateValue, limit);
     }
 
 };
 
 // API Connection //
 // retrieve lat and lon //
-var getAPI = function(city, state, limit) {
+var getCoordinates = function(city, state, limit) {
     var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "," + "{country}&limit=" + limit + "&appid=" + apiKey;  
     //var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=Winters,{state},{country}&limit=5&appid=097a5ac483594b0099362e36fa245dbe"
 
