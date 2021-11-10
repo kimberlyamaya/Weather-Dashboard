@@ -50,7 +50,7 @@ var getCoordinates = function(city, state) {
         return(response).json();
     })
     .then(function (coordinatesData) {
-        console.log(coordinatesData);
+        console.log("coordinatesData: " + coordinatesData);
         storeCoordinates(coordinatesData);
     })
 
@@ -62,16 +62,16 @@ var storeCoordinates = function(coordinatesData) {
     for (var i = 0; i < coordinatesData.length; i++) {
         // grabbing at 0 because I am getting many results
         // passing state is not working 
-        lat = coordinatesData[0].lat;
-        lon = coordinatesData[0].lon;
-        apiCity = coordinatesData[0].name;
-        apiState = coordinatesData[0].state;
-        console.log(lat,lon);
-        console.log(apiCity, apiState);
+        lat = coordinatesData[i].lat;
+        lon = coordinatesData[i].lon;
+        apiCity = coordinatesData[i].name;
+        apiState = coordinatesData[i].state;
+        console.log("lat,lon: " + lat,lon);
+        console.log("apiCity, apiState: " + apiCity, apiState);
 
         // dispaly city and state here
         // need to add icon next to this!
-        cityPlusDate.textContent=apiCity + "," + apiState + "  (" + todayDate + ")";
+        cityPlusDate.textContent.toUpperCase=(cityValue + "," + stateValue + "  (" + todayDate + ")");
         todayWeatherContainer.appendChild(cityPlusDate);
 
     }
@@ -106,6 +106,8 @@ var storeWeatherData = function(weatherData) {
         console.log("mainTemp")
         todayWeatherDetailsContainer.appendChild(mainTemp);
     }
+
+    // once city/state value entered from input field matches apicity then pass data to fields
 }*/
 
 // on click event to kick off API
