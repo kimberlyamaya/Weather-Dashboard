@@ -1,7 +1,6 @@
 // global variables //
 var searchBtn = document.getElementById("search-btn");
 var apiKey = "097a5ac483594b0099362e36fa245dbe";
-var limit = 5;
 var city = document.getElementById("city-input");
 var state = document.getElementById("state-input");
 var cityValue = "";
@@ -12,19 +11,25 @@ var apiCity = "";
 var apiState = "";
 var excludeAPI = "minutely,hourly";
 var cityPlusDate = document.getElementById("city-plus-date");
-var todayWeatherContainer = document.getElementById("todayWeather")
+var currentWeatherContainer = document.getElementById("currentWeather")
+var forecastWeaterContainer = document.getElementById("5dayWeather")
+var forecastHeader = document.getElementById("5dayForecastHeader")
+var weatherCard1 = document.getElementById("weather-card-container-1")
+var weatherCard2 = document.getElementById("weather-card-container-2")
+var weatherCard3 = document.getElementById("weather-card-container-3")
+var weatherCard4 = document.getElementById("weather-card-container-4")
+var weatherCard5 = document.getElementById("weather-card-container-5")
 var todayDate = moment().format("l");
-var todayWeatherDetailsContainer = document.getElementById("weather-details-container");
 
 var inputHandler = function() {
     // removed (event) from function above to avoid errors
     //event.preventDefault();
 
     // get values from input
+    // can I add trim here?
     cityValue = city.value;
-    stateValue = state.value.trim();
+    stateValue = state.value;
 
-    //console.log(cityValue);
     
     if (cityValue === "") {
         alert("Please enter a city.");
@@ -33,25 +38,31 @@ var inputHandler = function() {
     } else if (stateValue === "") {
         alert("Please enter a state.");
     } else {
-        getCoordinates(cityValue, stateValue, limit);
+        getCoordinates(cityValue, stateValue);
     }
 
 };
 
 // API Connection //
 // retrieve lat and lon //
-// although I am passing state the search for the city returns all possible states
 var getCoordinates = function(city, state) {
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "," + "{country}&limit=" + limit + "&appid=" + apiKey;  
-    //var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=Winters,CA,{country}&limit=5&appid=097a5ac483594b0099362e36fa245dbe"
+    console.log(city, state)
+    //var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=Winters,CA,{country}&appid=097a5ac483594b0099362e36fa245dbe";
+    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "{country}&appid=" + apiKey;
 
-    fetch(requestURL)   
-    .then(function (response) {
-        return(response).json();
-    })
-    .then(function (coordinatesData) {
-        console.log("coordinatesData: " + coordinatesData);
+    fetch(requestURL).then(function (response) {
+        response.json().then(function(coordinatesData) {
+        console.log(coordinatesData);
+``
+        /*// only run this function if input value equals api value
+        if (state.value = apiState) {
+            console.log("runNextFunction")
+        } else (
+            console.log("Nothing")
+        )*/
+
         storeCoordinates(coordinatesData);
+        })
     })
 
 }
@@ -60,55 +71,111 @@ var storeCoordinates = function(coordinatesData) {
 
     // loop through data to parse out city, state, lat and lon
     for (var i = 0; i < coordinatesData.length; i++) {
-        // grabbing at 0 because I am getting many results
-        // passing state is not working 
+        // add some logic here to say if city state from api = city state from input then continue otherwise...
         lat = coordinatesData[i].lat;
         lon = coordinatesData[i].lon;
         apiCity = coordinatesData[i].name;
         apiState = coordinatesData[i].state;
-        console.log("lat,lon: " + lat,lon);
-        console.log("apiCity, apiState: " + apiCity, apiState);
 
-        // dispaly city and state here
+
         // need to add icon next to this!
-        cityPlusDate.textContent.toUpperCase=(cityValue + "," + stateValue + "  (" + todayDate + ")");
-        todayWeatherContainer.appendChild(cityPlusDate);
+        cityPlusDate.textContent=(apiCity + "," + apiState + "  (" + todayDate + ")");
+        currentWeatherContainer.appendChild(cityPlusDate);
+
+        /*// only run this function if input value equals api value
+        if (state.value = apiState) {
+            console.log("runNextFunction")
+        } else (
+            console.log("Nothing")
+        )*/
+
+        getWeatherData(lat,lon);
 
     }
-
-    // I need to pass these coordinates into another API connection
 }
 
 
 // API Connection //
 // retrieve weather data //
-// need to pass lat and lon here but am instead passing the city, state
-/*var getWeatherData = function() {
-    // my lat and lon are empty, why?
-    console.log(lat, lon)
-    //var requestURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=" + excludeAPI + "&appid=" + apiKey
-    var requestURL = "https://api.openweathermap.org/data/2.5/onecall?lat=38.5249&lon=-121.9708&exclude=" + excludeAPI + "&appid=" + apiKey
-
-    fetch(requestURL)
-    .then(function (response) {
-        return(response).json();
-    })
-    .then(function (weatherData) {
+// I only want to pass one lat and lon here! //
+var getWeatherData = function(lat,lon) {
+    //var requestURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=38.5249&lon=-121.9708&units=imperial&appid=097a5ac483594b0099362e36fa245dbe"
+    var requestURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
+    fetch(requestURL2).then(function (response) {
+        response.json().then(function(weatherData) {
         console.log(weatherData);
-        storeWeatherData(weatherData);
+        
+        displayCurrentWeatherData(weatherData);
+        displayForecastWeatherData(weatherData);
+        })
     })
+
 }
 
-var storeWeatherData = function(weatherData) {
-    for (var i = 0; i < weatherData.length; i++) {
-        var mainTemp = document.createElement("p")
-        mainTemp.textContent=weatherData[i].current.temp
-        console.log("mainTemp")
-        todayWeatherDetailsContainer.appendChild(mainTemp);
-    }
+var displayCurrentWeatherData = function(weatherData) {
 
-    // once city/state value entered from input field matches apicity then pass data to fields
-}*/
+    // current temp
+    // how do you get the degree symbol?
+    var currentTemp = document.createElement("span")
+    currentTemp.textContent = "Temp: " + weatherData.current.temp + " F"
+
+    // current wind
+    var currentWind = document.createElement("span")
+    currentWind.textContent = "Wind: " + weatherData.current.wind_speed + " MPH"
+
+    //current humidity
+    var currentHumidity = document.createElement("span")
+    currentHumidity.textContent = "Humidity: " + weatherData.current.humidity + " %"
+
+    //current uvindex
+    var currentUVindex = document.createElement("span")
+    currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
+    currentUVindex.addClass = ("uvIndex")
+
+    //append
+    currentWeatherContainer.appendChild(currentTemp);
+    currentWeatherContainer.appendChild(currentWind);
+    currentWeatherContainer.appendChild(currentHumidity);
+    currentWeatherContainer.appendChild(currentUVindex);
+
+}
+
+
+var displayForecastWeatherData = function(weatherData) {
+
+    /*for (var i = 0; i < weatherData.daily.length; i++) {
+        var forecastTemp = document.createElement("p")
+        forecastTemp.textContent=weatherData.daily[i].temp.day
+        console.log(forecastTemp);
+    }*/
+
+    forecastHeader.textContent="5-day Forecast"
+
+    //covert date1
+    unixTime1 = weatherData.daily[1].dt
+    var date1 = new Date(unixTime1 * 1000)
+    var forecastDate1 = document.createElement("span")
+    forecastDate1.textContent=date1.toLocaleDateString("en-US")
+    
+    //get temp1
+    var forecastTemp1 = document.createElement("span")
+    forecastTemp1.textContent= "Temp: " + weatherData.daily[1].temp.day + " F"
+
+    //get wind1
+    var forecastWind1 = document.createElement("span")
+    forecastWind1.textContent = "Wind: " + weatherData.daily[1].wind_speed + " MPH"
+
+    //get humidity1
+    var forecastHumidity1 = document.createElement("span")
+    forecastHumidity1.textContent = "Humidity: " + weatherData.daily[1].humidity + " %"
+
+    //apppend1
+    //forecastWeaterContainer.appendChild(forecastHeader);
+    weatherCard1.appendChild(forecastDate1);
+    weatherCard1.appendChild(forecastTemp1);
+    weatherCard1.appendChild(forecastWind1);
+    weatherCard1.appendChild(forecastHumidity1);
+}
 
 // on click event to kick off API
 searchBtn.addEventListener("click",inputHandler);

@@ -1,0 +1,12 @@
+.uvIndex {
+    background-color: green;
+    color: white;
+}
+
+header h1 {
+    color:white;
+}
+
+.weatherCards {
+    column-span: 1;
+}
