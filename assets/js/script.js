@@ -14,11 +14,7 @@ var cityPlusDate = document.getElementById("city-plus-date");
 var currentWeatherContainer = document.getElementById("currentWeather")
 var forecastWeaterContainer = document.getElementById("5dayWeather")
 var forecastHeader = document.getElementById("5dayForecastHeader")
-var weatherCard1 = document.getElementById("weather-card-container-1")
-var weatherCard2 = document.getElementById("weather-card-container-2")
-var weatherCard3 = document.getElementById("weather-card-container-3")
-var weatherCard4 = document.getElementById("weather-card-container-4")
-var weatherCard5 = document.getElementById("weather-card-container-5")
+var cardBody1 = document.getElementById("card-body-1")
 var todayDate = moment().format("l");
 
 var inputHandler = function() {
@@ -116,21 +112,22 @@ var displayCurrentWeatherData = function(weatherData) {
 
     // current temp
     // how do you get the degree symbol?
-    var currentTemp = document.createElement("span")
+    var currentTemp = document.createElement("p")
     currentTemp.textContent = "Temp: " + weatherData.current.temp + " F"
 
     // current wind
-    var currentWind = document.createElement("span")
+    var currentWind = document.createElement("p")
     currentWind.textContent = "Wind: " + weatherData.current.wind_speed + " MPH"
 
     //current humidity
-    var currentHumidity = document.createElement("span")
+    var currentHumidity = document.createElement("p")
     currentHumidity.textContent = "Humidity: " + weatherData.current.humidity + " %"
 
     //current uvindex
-    var currentUVindex = document.createElement("span")
+    var currentUVindex = document.createElement("p")
     currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
-    currentUVindex.addClass = ("uvIndex")
+    //need the value to have uvIndex
+    //currentUVindex.classList.add("uvIndex")
 
     //append
     currentWeatherContainer.appendChild(currentTemp);
@@ -154,27 +151,36 @@ var displayForecastWeatherData = function(weatherData) {
     //covert date1
     unixTime1 = weatherData.daily[1].dt
     var date1 = new Date(unixTime1 * 1000)
-    var forecastDate1 = document.createElement("span")
+    var forecastDate1 = document.createElement("p")
     forecastDate1.textContent=date1.toLocaleDateString("en-US")
+    forecastDate1.classList.add("card-Title")
+
+    //get icon
+    /*var forecasticon1 = document.createElement("i")
+    forecasticon1.textContent = "weatherData.daily[1].weather.icon"
+    forecasticon1.classList.add("cart-text")*/
     
     //get temp1
-    var forecastTemp1 = document.createElement("span")
-    forecastTemp1.textContent= "Temp: " + weatherData.daily[1].temp.day + " F"
+    var forecastTemp1 = document.createElement("p")
+    forecastTemp1.textContent = "Temp: " + weatherData.daily[1].temp.day + " F"
+    forecastTemp1.classList.add("text")
 
     //get wind1
-    var forecastWind1 = document.createElement("span")
+    var forecastWind1 = document.createElement("p")
     forecastWind1.textContent = "Wind: " + weatherData.daily[1].wind_speed + " MPH"
+    forecastWind1.classList.add("text")
 
     //get humidity1
-    var forecastHumidity1 = document.createElement("span")
+    var forecastHumidity1 = document.createElement("p")
     forecastHumidity1.textContent = "Humidity: " + weatherData.daily[1].humidity + " %"
+    forecastHumidity1.classList.add("text")
 
     //apppend1
-    //forecastWeaterContainer.appendChild(forecastHeader);
-    weatherCard1.appendChild(forecastDate1);
-    weatherCard1.appendChild(forecastTemp1);
-    weatherCard1.appendChild(forecastWind1);
-    weatherCard1.appendChild(forecastHumidity1);
+    cardBody1.appendChild(forecastDate1);
+    //cardBody1.appendChild(forecasticon1);
+    cardBody1.appendChild(forecastTemp1);
+    cardBody1.appendChild(forecastWind1);
+    cardBody1.appendChild(forecastHumidity1);
 }
 
 // on click event to kick off API
