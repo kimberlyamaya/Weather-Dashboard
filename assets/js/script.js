@@ -147,6 +147,7 @@ var displayForecastWeatherData = function(weatherData) {
     }*/
 
     forecastHeader.textContent="5-day Forecast"
+    forecastHeader.classList.add("visible")
 
     //covert date1
     unixTime1 = weatherData.daily[1].dt
@@ -154,26 +155,31 @@ var displayForecastWeatherData = function(weatherData) {
     var forecastDate1 = document.createElement("p")
     forecastDate1.textContent=date1.toLocaleDateString("en-US")
     forecastDate1.classList.add("card-Title")
+    forecastDate1.classList.add("visible")
 
     //get icon
     /*var forecasticon1 = document.createElement("i")
     forecasticon1.textContent = "weatherData.daily[1].weather.icon"
-    forecasticon1.classList.add("cart-text")*/
+    forecasticon1.classList.add("cart-text")
+    forecasticon1.classList.add("visible")*/
     
     //get temp1
     var forecastTemp1 = document.createElement("p")
     forecastTemp1.textContent = "Temp: " + weatherData.daily[1].temp.day + " F"
     forecastTemp1.classList.add("text")
+    forecastTemp1.classList.add("visible")
 
     //get wind1
     var forecastWind1 = document.createElement("p")
     forecastWind1.textContent = "Wind: " + weatherData.daily[1].wind_speed + " MPH"
     forecastWind1.classList.add("text")
+    forecastWind1.classList.add("visible")
 
     //get humidity1
     var forecastHumidity1 = document.createElement("p")
     forecastHumidity1.textContent = "Humidity: " + weatherData.daily[1].humidity + " %"
     forecastHumidity1.classList.add("text")
+    forecastHumidity1.classList.add("visible")
 
     //apppend1
     cardBody1.appendChild(forecastDate1);

@@ -14,3 +14,11 @@ header h1 {
 .text {
     font-size: small;
 }
+
+.invisible {
+    visibility: hidden;
+  }
+
+.visible {
+    visibility: visible;
+}

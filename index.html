@@ -23,7 +23,6 @@
                 <button id="search-btn" class="btn-primary">Search</button>
                 <button id="clear-hisotry-btn" class="btn-secondary">Clear History</button>
             </div>
-
         
 
             <div id="currentWeather" class="currentWeather col-9 d-flex flex-column">
@@ -32,32 +31,48 @@
                 <!-- dynamically appended p containing temp, wind, humidity, and uv index -->
             
             </div>
-               
 
-            <div id="5dayWeather" class="5dayWeather">
-                <h5 id="5dayForecastHeader" class="5dayForecastHeader col-10"></h5>
-            </div>
+            <!-- history weather section -->
 
-            <!-- dynamically appended spans into cards -->
-            <div id="weather-card-container-1" class="card" style="max-width: 9.5rem;">
-                <div id="card-body-1" class="card-body"></div>
-            </div>
+            <section class="col-3 d-flex flex-column">
+                <div id="history-weather" class="col-3 history-weather"> 
+                    <button id="hisotry-btn" class="btn-secondary">city name</button>
 
-            <div id="weather-card-container-2" class="card" style="max-width: 9.5rem;">
-                <div id="card-body-2" class="card-body"></div>
-            </div>  
+                </div>   
+            </section>    
+            
+            <!-- forecast header -->
+            <section id="forecast-header-section" class="d-flex col-9 justify-content-start invisible forecast-header">
 
-            <div id="weather-card-container-3" class="card" style="max-width: 9.5rem;">
-                <div id="card-body-3" class="card-body"></div>
-            </div>
+                <div id="5dayWeather" class="5dayWeather">
+                    <h5 id="5dayForecastHeader" class="5dayForecastHeader col-10"></h5>
+                </div>
+            </section>
 
-            <div id="weather-card-container-4" class="card" style="max-width: 9.5rem;">
-                <div id="card-body-4" class="card-body"></div>
-            </div>
+            <!-- forecast cards -->
+            <section id="forecast-card-section" class="d-flex justify-content-end invisible forecast-cards">
 
-            <div id="weather-card-container-5" class="card" style="max-width: 9.5rem;">
-                <div id="card-body-5" class="card-body"></div>
-            </div>
+                <div id="weather-card-container-1" class="card" style="max-width: 9.5rem;">
+                    <div id="card-body-1" class="card-body"></div>
+                </div>
+
+                <div id="weather-card-container-2" class="card" style="max-width: 9.5rem;">
+                    <div id="card-body-2" class="card-body"></div>
+                </div>  
+
+                <div id="weather-card-container-3" class="card" style="max-width: 9.5rem;">
+                    <div id="card-body-3" class="card-body"></div>
+                </div>
+
+                <div id="weather-card-container-4" class="card" style="max-width: 9.5rem;">
+                    <div id="card-body-4" class="card-body"></div>
+                </div>
+
+                <div id="weather-card-container-5" class="card" style="max-width: 9.5rem;">
+                    <div id="card-body-5" class="card-body"></div>
+                </div>
+            </section>
+
              
 
         </div>
