@@ -14,38 +14,36 @@
             <h1>Weather Dashboard</h1>
         </header>
 
+        
         <div class="row"> 
             
-            <div id="side-bar" class="side-bar col-3 d-flex flex-column">
+            <div id="side-bar" class="col-3 d-flex flex-column side-bar">
                 <h3 class="">Search for City:</h3>
                 <input type="text" placeholder="City" id="city-input">  
                 <input type="text" placeholder="State" id="state-input">
                 <button id="search-btn" class="btn-primary">Search</button>
                 <button id="clear-hisotry-btn" class="btn-secondary">Clear History</button>
             </div>
-        
-
-            <div id="currentWeather" class="currentWeather col-9 d-flex flex-column">
+    
+            <div id="current-weather" class="col-8 d-flex flex-column current-weather">
                 <!-- this div has a border around it -->
                 <h3 id="city-plus-date" class="city-plus-date"></h3>
-                <!-- dynamically appended p containing temp, wind, humidity, and uv index -->
-            
+                <!-- dynamically appended p containing temp, wind, humidity, and uv index -->            
             </div>
 
             <!-- history weather section -->
-
-            <section class="col-3 d-flex flex-column">
+            <section class="col-3 d-flex flex-column weather-history">
                 <div id="history-weather" class="col-3 history-weather"> 
-                    <button id="hisotry-btn" class="btn-secondary">city name</button>
+                    <!-- dynamically created history buttons -->
 
                 </div>   
             </section>    
             
             <!-- forecast header -->
-            <section id="forecast-header-section" class="d-flex col-9 justify-content-start invisible forecast-header">
+            <section id="forecast-header-section" class="d-flex col-8 justify-content-start invisible forecast-header">
 
                 <div id="5dayWeather" class="5dayWeather">
-                    <h5 id="5dayForecastHeader" class="5dayForecastHeader col-10"></h5>
+                    <h5 id="5dayForecastHeader" class="5dayForecastHeader"></h5>
                 </div>
             </section>
 

@@ -22,3 +22,23 @@ header h1 {
 .visible {
     visibility: visible;
 }
+
+.weather-history {
+    height: 100%;
+}
+
+.current-weather {
+    border: 2px solid transparent;
+}
+
+.side-bar {
+    margin-left: 50px;
+}
+
+.weather-history {
+    margin-left: 50px;
+}
+
+.card {
+    background-color: #6c757d;
+}
