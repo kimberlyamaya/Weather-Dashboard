@@ -42,3 +42,8 @@ header h1 {
 .card {
     background-color: #6c757d;
 }
+
+.weather-history-button {
+    width: 360px;
+    text-align: center;
+}
