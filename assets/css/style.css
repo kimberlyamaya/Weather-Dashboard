@@ -9,6 +9,7 @@ header h1 {
 
 .card-Title {
     font-weight: bold;
+    margin-bottom: 0px;
 }
 
 .text {
@@ -45,5 +46,9 @@ header h1 {
 
 .weather-history-button {
     width: 360px;
+    text-align: center;
+}
+
+.forecast-cards {
     text-align: center;
 }

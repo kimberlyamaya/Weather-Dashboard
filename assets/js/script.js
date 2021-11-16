@@ -94,7 +94,6 @@ var storeCoordinates = function(coordinatesData) {
         lon = coordinatesData[i].lon;
         apiCity = coordinatesData[i].name;
         apiState = coordinatesData[i].state;
-
         cityPlusDate.textContent = ""
 
         // need to add icon next to this!
@@ -198,6 +197,9 @@ var displayForecastWeatherData = function(weatherData) {
     console.log(weatherData.daily[1])
     var forecasticon1 = document.createElement("img")
     forecasticon1.src = "https://openweathermap.org/img/wn/" + weatherData.daily[1].weather[0].icon + "@2x.png"
+    forecasticon1.setAttribute("width","70")
+    forecasticon1.setAttribute("height","70")
+    forecasticon1.classList.add("forecast-icon")
     forecasticon1.style.visibility="visible";
     
     //get temp1
