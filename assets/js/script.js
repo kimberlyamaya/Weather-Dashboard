@@ -12,6 +12,7 @@ var apiState = "";
 var excludeAPI = "minutely,hourly"
 var cityPlusDate = document.getElementById("city-plus-date")
 var currentWeatherContainer = document.getElementById("current-weather")
+var currentWeatherHeaderIconDiv = document.getElementById("headerIconDiv")
 var forecastWeaterContainer = document.getElementById("5dayWeather")
 var forecastHeader = document.getElementById("5dayForecastHeader")
 var cardBody1 = document.getElementById("card-body-1")
@@ -22,10 +23,12 @@ var currentTemp = document.createElement("p")
 var currentWind = document.createElement("p")
 var currentHumidity = document.createElement("p")
 var currentUVindex = document.createElement("p")
-var forecastDate1 = document.createElement("p")
+var forecastDate1 = document.createElement("h7")
 var forecastTemp1 = document.createElement("p")
 var forecastWind1 = document.createElement("p")
 var forecastHumidity1 = document.createElement("p")
+var forecasticon1 = document.createElement("img")
+var currentIcon1 = document.createElement("img")
 
 
 var inputHandler = function() {
@@ -63,10 +66,12 @@ var checkHistoryArray = function() {
 
 // API Connection //
 // retrieve lat and lon //
-var getCoordinates = function(city, state) {
-    console.log(city, state)
+var getCoordinates = function(cityValue, stateValue) {
+    console.log(cityValue, stateValue)
     //var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=Winters,TX,{country}&appid=097a5ac483594b0099362e36fa245dbe";
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "{country}&appid=" + apiKey;
+    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityValue + "," + stateValue + "{country}&appid=" + apiKey;
+
+    console.log(requestURL)
 
     fetch(requestURL).then(function (response) {
         response.json().then(function(coordinatesData) {
@@ -94,22 +99,7 @@ var storeCoordinates = function(coordinatesData) {
         lon = coordinatesData[i].lon;
         apiCity = coordinatesData[i].name;
         apiState = coordinatesData[i].state;
-        cityPlusDate.textContent = ""
 
-        // need to add icon next to this!
-        cityPlusDate.textContent=(apiCity + "," + apiState + "  (" + todayDate + ")");
-        //cityPlusDate.classList.add("visible");
-
-        console.log(cityPlusDate);
-        currentWeatherContainer.appendChild(cityPlusDate);
-        currentWeatherContainer.style.borderColor = "black";
-
-        /*// only run this function if input value equals api value
-        if (state.value = apiState) {
-            console.log("runNextFunction")
-        } else (
-            console.log("Nothing")
-        )*/
 
         getWeatherData(lat,lon);
 
@@ -138,11 +128,26 @@ var getWeatherData = function(lat,lon) {
 var displayCurrentWeatherData = function(weatherData) {
 
     // clear contents
-    //cityPlusDate.textContent = ""
+    cityPlusDate.textContent = ""
     currentTemp.textContent = ""
+    forecasticon1.src = ""
     currentWind.textContent = ""
     currentHumidity.textContent = ""
     currentUVindex.textContent = ""
+
+
+    // setting text contents
+    // city plus date, header
+    cityPlusDate.textContent=(apiCity + "," + apiState + "  (" + todayDate + ")");
+
+    // current icon
+    console.log(weatherData.current.weather[0].icon)
+    currentIcon1.src = "https://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + "@2x.png"
+    currentIcon1.setAttribute("width","60")
+    currentIcon1.setAttribute("height","60")
+    currentIcon1.classList.add("forecast-icon")
+    currentIcon1.style.visibility="visible";
+
 
     // current temp
     // how do you get the degree symbol?
@@ -159,7 +164,11 @@ var displayCurrentWeatherData = function(weatherData) {
     //need the value to have uvIndex
     //currentUVindex.classList.add("uvIndex")
 
+
     //append
+    currentWeatherHeaderIconDiv.appendChild(cityPlusDate);
+    currentWeatherHeaderIconDiv.appendChild(currentIcon1);
+    currentWeatherContainer.style.borderColor = "black";
     currentWeatherContainer.appendChild(currentTemp);
     currentWeatherContainer.appendChild(currentWind);
     currentWeatherContainer.appendChild(currentHumidity);
@@ -173,29 +182,25 @@ var displayForecastWeatherData = function(weatherData) {
     // clear contents
     forecastHeader.textContent=""
     forecastDate1.textContent=""
-    //forecasticon1.textContent=""
+    forecasticon1.src = "..."
     forecastTemp1.textContent=""
     forecastWind1.textContent=""
     forecastHumidity1.textContent=""
 
+    // 5-day forecase header
     forecastHeader.textContent="5-day Forecast"
     forecastHeader.style.visibility="visible";
 
+    // ** CARD 1 ** //
     //covert date1
     unixTime1 = weatherData.daily[1].dt
     var date1 = new Date(unixTime1 * 1000)
     forecastDate1.textContent=date1.toLocaleDateString("en-US")
-    forecastDate1.classList.add("card-Title")
+    forecastDate1.classList.add("card-title")
     forecastDate1.style.visibility="visible";
 
-    //get icon
-    //more createElement to top of file
-    /*var forecasticon1 = document.createElement("i")
-    forecasticon1.textContent = "weatherData.daily[1].weather.icon"
-    forecasticon1.classList.add("cart-text")
-    forecasticon1.style.visibility="visible";*/
+    // get icon1
     console.log(weatherData.daily[1])
-    var forecasticon1 = document.createElement("img")
     forecasticon1.src = "https://openweathermap.org/img/wn/" + weatherData.daily[1].weather[0].icon + "@2x.png"
     forecasticon1.setAttribute("width","70")
     forecasticon1.setAttribute("height","70")
@@ -204,17 +209,17 @@ var displayForecastWeatherData = function(weatherData) {
     
     //get temp1
     forecastTemp1.textContent = "Temp: " + weatherData.daily[1].temp.day + " F"
-    forecastTemp1.classList.add("text")
+    forecastTemp1.classList.add("card-text")
     forecastTemp1.style.visibility="visible";
 
     //get wind1
     forecastWind1.textContent = "Wind: " + weatherData.daily[1].wind_speed + " MPH"
-    forecastWind1.classList.add("text")
+    forecastWind1.classList.add("card-text")
     forecastWind1.style.visibility="visible";
 
     //get humidity1
     forecastHumidity1.textContent = "Humidity: " + weatherData.daily[1].humidity + " %"
-    forecastHumidity1.classList.add("text")
+    forecastHumidity1.classList.add("card-text")
     forecastHumidity1.style.visibility="visible";
 
     //apppend1
@@ -223,6 +228,14 @@ var displayForecastWeatherData = function(weatherData) {
     cardBody1.appendChild(forecastTemp1);
     cardBody1.appendChild(forecastWind1);
     cardBody1.appendChild(forecastHumidity1);
+
+    // ** CARD 2 ** //
+
+    // ** CARD 3 ** //
+
+    // ** CARD 4 ** //
+
+    // ** CARD 5 ** //
 
     appendHistoryButtons();
 

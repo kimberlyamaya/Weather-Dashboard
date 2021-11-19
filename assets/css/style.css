@@ -7,12 +7,12 @@ header h1 {
     color:white;
 }
 
-.card-Title {
+.card-title {
     font-weight: bold;
     margin-bottom: 0px;
 }
 
-.text {
+.card-text {
     font-size: small;
 }
 
@@ -40,10 +40,6 @@ header h1 {
     margin-left: 50px;
 }
 
-.card {
-    background-color: #6c757d;
-}
-
 .weather-history-button {
     width: 360px;
     text-align: center;
@@ -51,4 +47,9 @@ header h1 {
 
 .forecast-cards {
     text-align: center;
+}
+
+.headerIconDiv {
+    display: inline-flex;
+    align-items: center;
 }
