@@ -12,8 +12,8 @@ header h1 {
     margin-bottom: 0px;
 }
 
-.card-text {
-    font-size: small;
+.card {
+    margin-right: 20px;
 }
 
 .invisible {
@@ -45,6 +45,10 @@ header h1 {
     text-align: center;
 }
 
+.fivedayWeather {
+    padding-top: 20px;
+}
+
 .forecast-cards {
     text-align: center;
 }
@@ -53,3 +57,4 @@ header h1 {
     display: inline-flex;
     align-items: center;
 }
+
