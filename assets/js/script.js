@@ -22,7 +22,6 @@ var cardBody3 = document.getElementById("card-body-3")
 var cardBody4 = document.getElementById("card-body-4")
 var cardBody5 = document.getElementById("card-body-5")
 var historyWeatherContainer = document.getElementById("history-weather")
-var cityHistoryBtn = document.createElement("button")
 var todayDate = moment().format("l");
 var currentIcon1 = document.createElement("img")
 var currentTemp = document.createElement("p")
@@ -78,17 +77,6 @@ var inputHandler = function() {
     }
 
 };
-
-var checkHistoryArray = function() {
-    var checkLocalStorage = localStorage.getItem("cityHistoryArray");
-
-    if (checkLocalStorage === null) {
-        var cityHistoryArray = [];
-
-        localStorage.setItem('cityHistoryArray', JSON.stringify(cityHistoryArray));
-
-    }
-}
 
 // API Connection //
 // retrieve lat and lon //
@@ -454,42 +442,58 @@ var displayForecastWeatherData = function(weatherData) {
     cardBody5.appendChild(forecastWind5);
     cardBody5.appendChild(forecastHumidity5);
 
-    appendHistoryButtons();
-
     storeWeather();
 }
 
 // create the city history button and append
-var appendHistoryButtons = function() {
+/*var appendHistoryButtons = function() {
     cityHistoryBtn.textContent = cityValue
     cityHistoryBtn.classList.add("weather-history-button")
     historyWeatherContainer.appendChild(cityHistoryBtn)
-}
+}*/
 
 // create function to loop through the cityHistoryArray
 // grab city.value assign to button
 
+
 var storeWeather = function() {
     
     var cityHistoryArray = JSON.parse(localStorage.getItem("cityHistoryArray"));
+    if (cityHistoryArray === null) {
+        var cityHistoryArray = [ ];
+    }
 
     //store the values display on page
-    cityHistoryArray.push({city: city.value, state: state.value, lat: lat, lon: lon}) 
+    cityHistoryArray.push({city: apiCity, state: apiState, lat: lat, lon: lon}) 
     
     /*[city.value, cityPlusDate.textContent, currentTemp.textContent, currentWind.textContent, currentHumidity.textContent, currentUVindex.textContent];*/
 
-    localStorage.setItem('cityHistoryArray', JSON.stringify(cityHistoryArray));
+    localStorage.setItem("cityHistoryArray", JSON.stringify(cityHistoryArray));
 
-    var retrievedObject = localStorage.getItem("cityHistoryArray");
+    //var retrievedObject = JSON.parse(localStorage.getItem("cityHistoryArray"));
 
-    //console.log('retrievedObject: ', JSON.parse(retrievedObject));
+    //clear the button container
+    historyWeatherContainer.innerHTML = ""
+
+    for (i = 0; i < cityHistoryArray.length; i++) {
+        console.log(cityHistoryArray[i]) 
+        //append the buttons
+        var cityHistoryBtn = document.createElement("button")
+        cityHistoryBtn.textContent = cityHistoryArray[i].city
+        cityHistoryBtn.classList.add("weather-history-button")
+        historyWeatherContainer.appendChild(cityHistoryBtn)
+    }
 }
 
 
 // on click event to kick off API
-searchBtn.addEventListener("click",inputHandler)
+searchBtn.addEventListener("click",function() {
 
-checkHistoryArray();
+inputHandler();
+
+})
+
+
 
 // on click event reload weather data
 //cityHistoryBtn.addEventListener
