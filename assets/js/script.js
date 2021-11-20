@@ -63,16 +63,16 @@ var inputHandler = function() {
     // get values from input
     // can I add trim here?
     cityValue = city.value;
-    stateValue = state.value;
+    //stateValue = state.value;
 
     
     if (cityValue === "") {
         alert("Please enter a city.");
-    } else if (cityValue === "" && stateValue === "") {
+    } /*else if (cityValue === "" && stateValue === "") {
         alert("Please enter city and state.");
     } else if (stateValue === "") {
         alert("Please enter a state.");
-    } else {
+    }*/ else {
         getCoordinates(cityValue, stateValue);
     }
 
@@ -81,7 +81,7 @@ var inputHandler = function() {
 // API Connection //
 // retrieve lat and lon //
 var getCoordinates = function(cityValue, stateValue) {
-    console.log(cityValue, stateValue)
+    //console.log(cityValue, stateValue)
     //var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=Winters,TX,{country}&appid=097a5ac483594b0099362e36fa245dbe";
     var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityValue + "," + stateValue + "{country}&appid=" + apiKey;
 
@@ -112,7 +112,7 @@ var storeCoordinates = function(coordinatesData) {
         lat = coordinatesData[i].lat;
         lon = coordinatesData[i].lon;
         apiCity = coordinatesData[i].name;
-        apiState = coordinatesData[i].state;
+        //apiState = coordinatesData[i].state;
 
 
         getWeatherData(lat,lon);
@@ -152,7 +152,8 @@ var displayCurrentWeatherData = function(weatherData) {
 
     // setting text contents
     // city plus date, header
-    cityPlusDate.textContent=(apiCity + "," + apiState + "  (" + todayDate + ")");
+    //cityPlusDate.textContent=(apiCity + "," + apiState + "  (" + todayDate + ")");
+    cityPlusDate.textContent=(apiCity  + "  (" + todayDate + ")");
 
     // current icon
     console.log(weatherData.current.weather[0].icon)
@@ -464,7 +465,8 @@ var storeWeather = function() {
     }
 
     //store the values display on page
-    cityHistoryArray.push({city: apiCity, state: apiState, lat: lat, lon: lon}) 
+    //cityHistoryArray.push({city: apiCity, state: apiState, lat: lat, lon: lon}) 
+    cityHistoryArray.push({city: apiCity, lat: lat, lon: lon}) 
     
     /*[city.value, cityPlusDate.textContent, currentTemp.textContent, currentWind.textContent, currentHumidity.textContent, currentUVindex.textContent];*/
 
