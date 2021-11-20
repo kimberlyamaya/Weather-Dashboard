@@ -1,8 +1,3 @@
-.uvIndex {
-    background-color: green;
-    color: white;
-}
-
 header h1 {
     color:white;
 }
@@ -51,10 +46,43 @@ header h1 {
 
 .forecast-cards {
     text-align: center;
+
 }
 
 .headerIconDiv {
     display: inline-flex;
     align-items: center;
+}
+
+.uvindex-green {
+    background-color: green;
+    color:white;
+    width: 120px;
+}
+
+.uvindex-yellow {
+    background-color: yellow;
+    width: 120px;
+}
+
+.uvindex-orange {
+    background-color: orange;
+    width: 120px;
+}
+
+.uvindex-red {
+    background-color: red;
+    color:white;
+    width: 120px;
+}
+
+.uvindex-violet {
+    background-color: violet;
+    color:white;
+    width: 120px;
+}
+
+.container {
+    margin-right: 80px;
 }
 

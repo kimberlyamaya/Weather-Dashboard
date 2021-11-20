@@ -15,6 +15,7 @@ var currentWeatherContainer = document.getElementById("current-weather")
 var currentWeatherHeaderIconDiv = document.getElementById("headerIconDiv")
 var forecastWeaterContainer = document.getElementById("fivedayWeather")
 var forecastHeader = document.getElementById("fivedayForecastHeader")
+var cardGroup = document.getElementById("card-group")
 var cardBody1 = document.getElementById("card-body-1")
 var cardBody2 = document.getElementById("card-body-2")
 var cardBody3 = document.getElementById("card-body-3")
@@ -184,10 +185,23 @@ var displayCurrentWeatherData = function(weatherData) {
     //current humidity
     currentHumidity.textContent = "Humidity: " + weatherData.current.humidity + " %"
 
-    //current uvindex
-    currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
-    //need the value to have uvIndex
-    //currentUVindex.classList.add("uvIndex")
+    //current uvindex 
+    if (weatherData.current.uvi <= 2) {
+        currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
+        currentUVindex.classList.add("uvindex-green");
+    } else if (weatherData.current.uvi >= 3 && weatherData.current.uvi <= 5) {
+        currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
+        currentUVindex.classList.add("uvindex-yellow");
+    } else if (weatherData.current.uvi >= 6 && weatherData.current.uvi <= 7) {
+        currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
+        currentUVindex.classList.add("uvindex-orange");
+    } else if (weatherData.current.uvi >= 8 && weatherData.current.uvi <= 10) {
+        currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
+        currentUVindex.classList.add("uvindex-red");
+    } else if (weatherData.current.uvi >= 11) {
+        currentUVindex.textContent = "UV Index: " + weatherData.current.uvi
+        currentUVindex.classList.add("uvindex-violet");
+    }
 
 
     //append
@@ -204,6 +218,12 @@ var displayCurrentWeatherData = function(weatherData) {
 
 var displayForecastWeatherData = function(weatherData) {
 
+
+    //cardGroup.classList.add("visible")
+    //cardBody1.classList.add("visible")
+
+    // add forecast-cards style to these containers weather-card-container-1
+
     // clear contents
     forecastHeader.textContent=""
     forecastDate1.textContent=""
@@ -212,11 +232,41 @@ var displayForecastWeatherData = function(weatherData) {
     forecastWind1.textContent=""
     forecastHumidity1.textContent=""
 
+    forecastDate2.textContent=""
+    forecasticon2.src = "..."
+    forecastTemp2.textContent=""
+    forecastWind2.textContent=""
+    forecastHumidity2.textContent=""
+
+    forecastDate3.textContent=""
+    forecasticon3.src = "..."
+    forecastTemp3.textContent=""
+    forecastWind3.textContent=""
+    forecastHumidity3.textContent=""
+
+    forecastDate4.textContent=""
+    forecasticon4.src = "..."
+    forecastTemp4.textContent=""
+    forecastWind4.textContent=""
+    forecastHumidity4.textContent=""
+
+    forecastDate5.textContent=""
+    forecasticon5.src = "..."
+    forecastTemp5.textContent=""
+    forecastWind5.textContent=""
+    forecastHumidity5.textContent=""
+
     // 5-day forecase header
     forecastHeader.textContent="5-day Forecast"
     forecastHeader.style.visibility="visible";
 
+
     // ** CARD 1 ** //
+
+    //give class to container1
+    var weatherCardContainer1 = document.getElementById("weather-card-container-1")
+    weatherCardContainer1.classList.add("text-white", "bg-secondary" ,"forecast-cards", "visible")
+
     //covert date1
     unixTime1 = weatherData.daily[1].dt
     var date1 = new Date(unixTime1 * 1000)
@@ -228,7 +278,6 @@ var displayForecastWeatherData = function(weatherData) {
     forecasticon1.src = "https://openweathermap.org/img/wn/" + weatherData.daily[1].weather[0].icon + "@2x.png"
     forecasticon1.setAttribute("width","70")
     forecasticon1.setAttribute("height","70")
-    forecasticon1.classList.add("forecast-icon")
     forecasticon1.style.visibility="visible";
     
     //get temp1
@@ -245,6 +294,11 @@ var displayForecastWeatherData = function(weatherData) {
 
 
     // ** CARD 2 ** //
+
+    //give class to container2
+    var weatherCardContainer2 = document.getElementById("weather-card-container-2")
+    weatherCardContainer2.classList.add("text-white", "bg-secondary" ,"forecast-cards", "visible")
+
     //covert date2
     unixTime2 = weatherData.daily[2].dt
     var date2 = new Date(unixTime2 * 1000)
@@ -273,6 +327,11 @@ var displayForecastWeatherData = function(weatherData) {
 
 
     // ** CARD 3 ** //
+
+    //give class to container3
+    var weatherCardContainer3 = document.getElementById("weather-card-container-3")
+    weatherCardContainer3.classList.add("text-white", "bg-secondary" ,"forecast-cards", "visible")
+
     unixTime3 = weatherData.daily[3].dt
     var date3 = new Date(unixTime3 * 1000)
     forecastDate3.textContent=date3.toLocaleDateString("en-US")
@@ -300,6 +359,12 @@ var displayForecastWeatherData = function(weatherData) {
 
 
     // ** CARD 4 ** //
+
+    //give class to container4
+    var weatherCardContainer4 = document.getElementById("weather-card-container-4")
+    weatherCardContainer4.classList.add("text-white", "bg-secondary" ,"forecast-cards", "visible")
+
+
     unixTime4 = weatherData.daily[4].dt
     var date4 = new Date(unixTime4 * 1000)
     forecastDate4.textContent=date4.toLocaleDateString("en-US")
@@ -327,6 +392,11 @@ var displayForecastWeatherData = function(weatherData) {
 
 
     // ** CARD 5 ** //
+
+    //give class to container5
+    var weatherCardContainer5 = document.getElementById("weather-card-container-5")
+    weatherCardContainer5.classList.add("text-white", "bg-secondary" ,"forecast-cards", "visible")
+
     unixTime5 = weatherData.daily[5].dt
     var date5 = new Date(unixTime5 * 1000)
     forecastDate5.textContent=date5.toLocaleDateString("en-US")
