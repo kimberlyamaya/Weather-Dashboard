@@ -10,83 +10,77 @@
     <link rel="stylesheet" href="./assets/css/style.css"></link>
 </head>
 <body>
-        <header class="col-12 bg-primary bg-gradient text-center">
-            <h1>Weather Dashboard</h1>
-        </header>
+    <header class="col-12 bg-primary bg-gradient text-center">
+        <h1>Weather Dashboard</h1>
+    </header>
 
         
-        <div class="row">
+    <div class="row">
             
-            <div id="side-bar" class="col-3 d-flex flex-column side-bar">
-                <h3 class="">Search for City:</h3>
-                <input type="text" placeholder="City" id="city-input">  
-                <!--<input type="text" placeholder="State" id="state-input">-->
-                <button id="search-btn" class="btn-primary">Search</button>
-            </div>
+        <div id="side-bar" class="col-3 d-flex flex-column side-bar">
+            <h3 class="">Search for City:</h3>
+            <input type="text" placeholder="City" id="city-input">  
+            <!--<input type="text" placeholder="State" id="state-input">-->
+            <button id="search-btn" class="btn-primary">Search</button>
+        </div>
     
-            <div id="current-weather" class="col-8 d-flex flex-column current-weather">
-                <!-- this div has a border around it -->
-                <div id = "headerIconDiv" class="headerIconDiv">
+        <div id="current-weather" class="col-8 d-flex flex-column current-weather">
+            <!-- this div has a border around it -->
+            <div id = "headerIconDiv" class="headerIconDiv">
                 <h3 id="city-plus-date" class="city-plus-date"></h3>
-                </div>
-                
-
-                <!-- dynamically appended p containing temp, wind, humidity, and uv index -->            
             </div>
-
+                <!-- dynamically appended p containing temp, wind, humidity, and uv index -->            
         </div>
-        <div class="row">
-
-            <!-- history weather section -->
-            <section class="col-3 weather-history">
-                <div id="history-weather" class="history-weather"> 
-                    <!-- dynamically created history buttons -->
-
-                </div>   
-            </section>    
-            
-            <!-- forecast header -->
-            <section id="forecast-header-section" class="d-flex col-8 justify-content-start invisible forecast-header">
-
-                <div id="fivedayWeather" class="fivedayWeather">
-                    <h5 id="fivedayForecastHeader" class="fivedayForecastHeader"></h5>
-                </div>
-
-                <!-- forecast cards -->
-                <!--<section id="forecast-card-section" class="d-flex justify-content-end invisible forecast-cards">-->
-                <div class="container col-8 mr-0">
-                    <div id="card-group" class="card-group invisible" style="justify-content: end;"> 
-                        <!--card 1-->
-                            <div id="weather-card-container-1" class="card" style="max-width: 20rem;">
-                                <div id="card-body-1" class="card-body"></div>
-                            </div>
-                        <!--card 2-->
-                            <div id="weather-card-container-2" class="card" style="max-width: 11rem;">
-                                <div id="card-body-2" class="card-body"></div>
-                            </div>
-                        <!--card 3-->
-                            <div id="weather-card-container-3" class="card" style="max-width: 11rem;">
-                                <div id="card-body-3" class="card-body"></div>
-                            </div>
-                        <!--card 4-->
-                            <div id="weather-card-container-4" class="card" style="max-width: 11rem;">
-                                <div id="card-body-4" class="card-body"></div>
-                            </div>
-                        <!--card 5-->
-                            <div id="weather-card-container-5" class="card" style="max-width: 11rem;">
-                                <div id="card-body-5" class="card-body"></div>
-                            </div>
-                    </div>
-                </div>
-            </section>
-            <!--</section>-->
-
-             
-
-        </div>
-
 
     </div>
+
+    <div class="row">
+
+        <!-- history weather section -->
+        <section class="col-3 weather-history">
+            <div id="history-weather" class="history-weather"> 
+                <!-- dynamically created history buttons -->
+            </div>   
+        </section>    
+            
+        <!-- forecast header -->
+        <section id="forecast-header-section" class="col-8 invisible forecast-header">
+            <div id="fivedayWeather" class="fivedayWeather">
+                <h5 id="fivedayForecastHeader" class="fivedayForecastHeader"></h5>
+            </div>
+
+        <!-- forecast cards -->
+            <div class="container col-8 mr-0">
+                <div id="card-group" class="card-group invisible"> 
+                    <!--card 1-->
+                    <div id="weather-card-container-1" class="card weather-card">
+                        <div id="card-body-1" class="card-body"></div>
+                    </div>
+
+                    <!--card 2-->
+                    <div id="weather-card-container-2" class="card weather-card">
+                        <div id="card-body-2" class="card-body"></div>
+                    </div>
+
+                    <!--card 3-->
+                    <div id="weather-card-container-3" class="card weather-card">
+                        <div id="card-body-3" class="card-body"></div>
+                    </div>
+
+                    <!--card 4-->
+                    <div id="weather-card-container-4" class="card weather-card">
+                        <div id="card-body-4" class="card-body"></div>
+                    </div>
+
+                    <!--card 5-->
+                    <div id="weather-card-container-5" class="card weather-card">
+                        <div id="card-body-5" class="card-body"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
