@@ -53,6 +53,7 @@ var forecastTemp5 = document.createElement("p")
 var forecastWind5 = document.createElement("p")
 var forecastHumidity5 = document.createElement("p")
 var forecasticon5 = document.createElement("img")
+var cityHistoryBtn = document.createElement("button")
 
 
 
@@ -477,30 +478,35 @@ var storeWeather = function() {
     //clear the button container
     historyWeatherContainer.innerHTML = ""
 
-    for (i = 0; i < cityHistoryArray.length; i++) {
-        console.log(cityHistoryArray[i]) 
-        //append the buttons
+    for (var i = 0; i < cityHistoryArray.length; i++) {
         var cityHistoryBtn = document.createElement("button")
+        //console.log(cityHistoryArray[i]) 
+        
+        //loop through array of buttons
+        
+        //if the city already exists in the buttons, don't append.
+        //if (this.innerHTML === )
+
+
+        //append the buttons
         cityHistoryBtn.textContent = cityHistoryArray[i].city
         cityHistoryBtn.classList.add("weather-history-button")
         historyWeatherContainer.appendChild(cityHistoryBtn)
-    }
+
+        // create the on click event for history button
+        cityHistoryBtn.addEventListener("click", function() {
+                 
+            //run getCoordinates
+            getCoordinates(this.innerHTML,stateValue);
+
+            //appending buttons but I don't want to at this point
+
+        })
+    }       
 }
 
 
+
+
 // on click event to kick off API
-searchBtn.addEventListener("click",function() {
-
-inputHandler();
-
-})
-
-
-
-// on click event reload weather data
-//cityHistoryBtn.addEventListener
-
-
-// does is make sense to store pertinent info from city save and call it when button is pressed?
-// Would I have to pass the city value back into the API? 
-// Could I store city in the object and call based on cityValue on click event = city?
+searchBtn.addEventListener("click", inputHandler)
