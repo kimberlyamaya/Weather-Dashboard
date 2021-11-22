@@ -108,6 +108,10 @@ var getCoordinates = function(cityValue, stateValue) {
                 alert("Please enter a valid city.");
             }
         })
+
+        .catch(function(error) {
+            alert("There was an error with this request, please try again");
+        })
     })
 
 }
