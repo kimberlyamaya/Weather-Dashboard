@@ -1,0 +1,79 @@
+header h1 {
+    color:white;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.invisible {
+    visibility: hidden;
+  }
+
+.visible {
+    visibility: visible;
+}
+
+.weather-history {
+    height: 100%;
+}
+
+.current-weather {
+    border: 2px solid transparent;
+}
+
+.side-bar {
+    margin-left: 50px;
+}
+
+.weather-history {
+    margin-left: 50px;
+}
+
+.weather-history-button {
+    width: 360px;
+    text-align: center;
+}
+
+.fivedayWeather {
+    padding-top: 20px;
+}
+
+.forecast-cards {
+    text-align: center;
+}
+
+.headerIconDiv {
+    display: inline-flex;
+    align-items: center;
+}
+
+.uvindex-green {
+    background-color: green;
+    color:white;
+    width: 120px;
+}
+
+.uvindex-yellow {
+    background-color: yellow;
+    width: 120px;
+}
+
+.uvindex-orange {
+    background-color: orange;
+    width: 120px;
+}
+
+.uvindex-red {
+    background-color: red;
+    color:white;
+    width: 120px;
+}
+
+.uvindex-violet {
+    background-color: violet;
+    color:white;
+    width: 120px;
+}
+
