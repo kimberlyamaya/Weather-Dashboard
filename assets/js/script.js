@@ -75,6 +75,7 @@ var inputHandler = function() {
         alert("Please enter a state.");
     }*/ else {
         getCoordinates(cityValue, stateValue);
+        city.value = ""
     }
 
 };
@@ -447,16 +448,6 @@ var displayForecastWeatherData = function(weatherData) {
     storeWeather();
 }
 
-// create the city history button and append
-/*var appendHistoryButtons = function() {
-    cityHistoryBtn.textContent = cityValue
-    cityHistoryBtn.classList.add("weather-history-button")
-    historyWeatherContainer.appendChild(cityHistoryBtn)
-}*/
-
-// create function to loop through the cityHistoryArray
-// grab city.value assign to button
-
 
 var storeWeather = function() {
     
@@ -467,27 +458,34 @@ var storeWeather = function() {
 
     //store the values display on page
     //cityHistoryArray.push({city: apiCity, state: apiState, lat: lat, lon: lon}) 
-    cityHistoryArray.push({city: apiCity, lat: lat, lon: lon}) 
-    
-    /*[city.value, cityPlusDate.textContent, currentTemp.textContent, currentWind.textContent, currentHumidity.textContent, currentUVindex.textContent];*/
 
-    localStorage.setItem("cityHistoryArray", JSON.stringify(cityHistoryArray));
+    var foundInArray = false;
 
-    //var retrievedObject = JSON.parse(localStorage.getItem("cityHistoryArray"));
+    for (let index = 0; index < cityHistoryArray.length; index++) {
+        //console.log (cityHistoryArray[i].city)
+        //console.log (apiCity)
+        if (cityHistoryArray[index].city === apiCity) {
+            console.log("found existing city")
+            foundInArray = true;
+            return;
+        
+        }
+    }
+
+    if (!foundInArray) {
+        cityHistoryArray.push({city: apiCity, lat: lat, lon: lon}) 
+        localStorage.setItem("cityHistoryArray", JSON.stringify(cityHistoryArray));
+    }
+
+    console.log(cityHistoryArray.includes({city: apiCity, lat: lat, lon: lon}))
+
 
     //clear the button container
     historyWeatherContainer.innerHTML = ""
 
     for (var i = 0; i < cityHistoryArray.length; i++) {
         var cityHistoryBtn = document.createElement("button")
-        //console.log(cityHistoryArray[i]) 
         
-        //loop through array of buttons
-        
-        //if the city already exists in the buttons, don't append.
-        //if (this.innerHTML === )
-
-
         //append the buttons
         cityHistoryBtn.textContent = cityHistoryArray[i].city
         cityHistoryBtn.classList.add("weather-history-button")
@@ -495,7 +493,7 @@ var storeWeather = function() {
 
         // create the on click event for history button
         cityHistoryBtn.addEventListener("click", function() {
-                 
+            
             //run getCoordinates
             getCoordinates(this.innerHTML,stateValue);
 

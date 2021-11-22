@@ -7,10 +7,6 @@ header h1 {
     margin-bottom: 0px;
 }
 
-.weather-card {
-    width: 800px;
-}
-
 .invisible {
     visibility: hidden;
   }
@@ -80,5 +76,4 @@ header h1 {
     color:white;
     width: 120px;
 }
-
 

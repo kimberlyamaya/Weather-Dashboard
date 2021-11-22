@@ -19,7 +19,7 @@
             
         <div id="side-bar" class="col-3 d-flex flex-column side-bar">
             <h3 class="">Search for City:</h3>
-            <input type="text" placeholder="City" id="city-input">  
+            <input type="text" placeholder="Enter a City" id="city-input">  
             <!--<input type="text" placeholder="State" id="state-input">-->
             <button id="search-btn" class="btn-primary">Search</button>
         </div>
@@ -49,35 +49,38 @@
                 <h5 id="fivedayForecastHeader" class="fivedayForecastHeader"></h5>
             </div>
 
-        <!-- forecast cards -->
-            <div class="container col-8 mr-0">
-                <div id="card-group" class="card-group invisible"> 
-                    <!--card 1-->
-                    <div id="weather-card-container-1" class="card weather-card">
-                        <div id="card-body-1" class="card-body"></div>
-                    </div>
 
-                    <!--card 2-->
-                    <div id="weather-card-container-2" class="card weather-card">
-                        <div id="card-body-2" class="card-body"></div>
-                    </div>
-
-                    <!--card 3-->
-                    <div id="weather-card-container-3" class="card weather-card">
-                        <div id="card-body-3" class="card-body"></div>
-                    </div>
-
-                    <!--card 4-->
-                    <div id="weather-card-container-4" class="card weather-card">
-                        <div id="card-body-4" class="card-body"></div>
-                    </div>
-
-                    <!--card 5-->
-                    <div id="weather-card-container-5" class="card weather-card">
-                        <div id="card-body-5" class="card-body"></div>
+            <!-- forecast cards -->
+            <section class="container">
+                <div class="row d-flex justify-content-center">
+                    <div id="card-group" class="card-deck col-8 invisible card-sm-gutters-1 d-block d-sm-flex">
+                        <!--card 1-->
+                        <div id="weather-card-container-1" class="card">
+                            <div id="card-body-1" class="card-body"></div>
+                        </div>
+        
+                        <!--card 2-->
+                        <div id="weather-card-container-2" class="card">
+                            <div id="card-body-2" class="card-body"></div>
+                        </div>
+        
+                        <!--card 3-->
+                        <div id="weather-card-container-3" class="card">
+                            <div id="card-body-3" class="card-body"></div>
+                        </div>
+        
+                        <!--card 4-->
+                        <div id="weather-card-container-4" class="card">
+                            <div id="card-body-4" class="card-body"></div>
+                        </div>
+        
+                        <!--card 5-->
+                        <div id="weather-card-container-5" class="card">
+                            <div id="card-body-5" class="card-body"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </section>
     </div>
 
