@@ -58,17 +58,13 @@ var cityHistoryBtn = document.createElement("button")
 
 
 var inputHandler = function() {
-    // removed (event) from function above to avoid errors
-    //event.preventDefault();
 
-    // get values from input
-    // can I add trim here?
     cityValue = city.value;
     //stateValue = state.value;
 
     
     if (cityValue === "") {
-        alert("Please enter a city.");
+        alert("Please enter a valid city.");
     } /*else if (cityValue === "" && stateValue === "") {
         alert("Please enter city and state.");
     } else if (stateValue === "") {
@@ -101,6 +97,16 @@ var getCoordinates = function(cityValue, stateValue) {
         )*/
 
         storeCoordinates(coordinatesData);
+        })
+
+        //error handling 
+        .catch(function(response) {
+            if(response.status === 302 || response.status === 400) {
+                console.log("status error")
+                // when I enter a city that doesn't exist, I still get status code 200
+                // so this wouldn't work like this by status
+                alert("Please enter a valid city.");
+            }
         })
     })
 
