@@ -81,7 +81,7 @@ var inputHandler = function() {
 var getCoordinates = function(cityValue, stateValue) {
     //console.log(cityValue, stateValue)
     //var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=Winters,TX,{country}&appid=097a5ac483594b0099362e36fa245dbe";
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityValue + "," + stateValue + "{country}&appid=" + apiKey;
+    var requestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityValue + "," + stateValue + "{country}&appid=" + apiKey;
 
     console.log(requestURL)
 
